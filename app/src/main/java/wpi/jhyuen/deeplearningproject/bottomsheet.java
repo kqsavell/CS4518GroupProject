@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,7 +21,7 @@ public class bottomsheet extends Fragment {
         View view = inflater.inflate(R.layout.fragment_bottomsheet, container, false);
 
         // get bottom sheet view
-        LinearLayout mBottomSheet = (LinearLayout) view.findViewById(R.id.bottomsheet);
+        ConstraintLayout mBottomSheet = (ConstraintLayout) view.findViewById(R.id.bottomsheet);
 
         Button mButton = (Button) view.findViewById(R.id.button);
 

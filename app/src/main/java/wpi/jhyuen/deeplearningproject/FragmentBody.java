@@ -19,13 +19,6 @@ public class FragmentBody extends Fragment {
     {
         View view = inflater.inflate(R.layout.fragment_body, container, false);
 
-        // Get parent activity
-        parent = (MainActivity)getActivity();
-
-        // Hook up event handlers
-        ImageButton photoBtn = (ImageButton)view.findViewById(R.id.cameraBtn);
-        photoBtn.setOnClickListener(parent.fromCameraListener);
-
         return view;
     }
 }

@@ -36,6 +36,15 @@ public class FragmentBottomSheet extends Fragment {
         final ImageButton mButton = (ImageButton) view.findViewById(R.id.imageButton3);
         final TextView mInferenceText = (TextView) view.findViewById(R.id.inferenceText);
 
+
+        // Get parent activity
+        parent = (MainActivity)getActivity();
+
+        // Hook up event handlers
+        ImageButton photoBtn = (ImageButton)view.findViewById(R.id.cameraButton);
+        photoBtn.setOnClickListener(parent.fromCameraListener);
+
+
         // init bottom sheet behavior from mBottomSheet object
         final BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
 

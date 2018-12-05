@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <fragment
-        android:id="@+id/fragment_flowers"
+        android:id="@+id/fragment_body"
         android:name="wpi.jhyuen.deeplearningproject.FragmentBody"
         android:layout_width="0dp"
         android:layout_height="0dp"

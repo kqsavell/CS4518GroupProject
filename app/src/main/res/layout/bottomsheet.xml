@@ -33,16 +33,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uploadTitle" />
 
-    <ImageButton
-        android:id="@+id/notesButton"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:background="@mipmap/notesicon"
-        app:layout_constraintStart_toEndOf="@+id/driveButton"
-        app:layout_constraintTop_toBottomOf="@+id/uploadTitle" />
-
     <TextView
         android:id="@+id/uploadTitle"
         android:layout_width="0dp"
@@ -72,20 +62,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/driveButton"
         app:layout_constraintTop_toBottomOf="@+id/driveButton" />
-
-    <TextView
-        android:id="@+id/notesLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="Notes"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/notesButton"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/notesButton"
-        app:layout_constraintTop_toBottomOf="@+id/notesButton" />
 
     <ImageButton
         android:id="@+id/imageButton3"

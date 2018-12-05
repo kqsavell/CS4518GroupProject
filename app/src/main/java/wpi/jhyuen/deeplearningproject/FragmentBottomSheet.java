@@ -43,10 +43,13 @@ public class FragmentBottomSheet extends Fragment {
         // Hook up event handlers
         ImageButton photoBtn = (ImageButton)view.findViewById(R.id.cameraButton);
         photoBtn.setOnClickListener(parent.fromCameraListener);
+        ImageButton galleryBtn = (ImageButton)view.findViewById(R.id.galleryButton);
+        galleryBtn.setOnClickListener(parent.fromPhotosListener);
 
 
         // init bottom sheet behavior from mBottomSheet object
         final BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
+        parent.bsBehavior = bottomSheetBehavior;
 
         // change state of bottom sheet
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);

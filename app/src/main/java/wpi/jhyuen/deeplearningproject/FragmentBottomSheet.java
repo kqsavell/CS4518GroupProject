@@ -56,10 +56,8 @@ public class FragmentBottomSheet extends Fragment {
             public void onClick(View v) {
                 if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                    mButton.setBackgroundResource(R.mipmap.downicon);
                 } else {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                    mButton.setBackgroundResource(R.mipmap.upicon);
                 }
 
             }
@@ -85,16 +83,11 @@ public class FragmentBottomSheet extends Fragment {
         bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                    mButton.setBackgroundResource(R.mipmap.downicon);
-                } else {
-                    mButton.setBackgroundResource(R.mipmap.upicon);
-                }
             }
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-
+                mButton.setRotation(slideOffset * 180);
             }
         });
 

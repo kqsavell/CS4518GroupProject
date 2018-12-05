@@ -9,14 +9,25 @@
     tools:context=".MainActivity">
 
     <fragment
-        android:id="@+id/fragment_flowers"
+        android:id="@+id/fragment_header"
+        android:name="wpi.jhyuen.deeplearningproject.FragmentHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_header" />
+
+    <fragment
+        android:id="@+id/fragment_body"
         android:name="wpi.jhyuen.deeplearningproject.FragmentBody"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_searchbar"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_header"
         tools:layout="@layout/fragment_body" />
 
     <fragment
@@ -28,16 +39,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout="@layout/fragment_bottomsheet" />
-
-    <fragment
-        android:id="@+id/fragment_searchbar"
-        android:name="wpi.jhyuen.deeplearningproject.FragmentHeader"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_header" />
 
 </android.support.constraint.ConstraintLayout>

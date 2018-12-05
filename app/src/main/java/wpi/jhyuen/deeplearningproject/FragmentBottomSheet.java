@@ -26,12 +26,10 @@ public class FragmentBottomSheet extends Fragment {
         View view = inflater.inflate(R.layout.fragment_bottomsheet, container, false);
 
         // get bottom sheet view
-        ConstraintLayout mBottomSheet = (ConstraintLayout) view.findViewById(R.id.bottomsheet);
+        final ConstraintLayout mBottomSheet = (ConstraintLayout) view.findViewById(R.id.bottomsheet);
         Switch mSwitch = (Switch) view.findViewById(R.id.inferenceswitch);
-        ImageButton mButton = (ImageButton) view.findViewById(R.id.imageButton3);
+        final ImageButton mButton = (ImageButton) view.findViewById(R.id.imageButton3);
         final TextView mInferenceText = (TextView) view.findViewById(R.id.inferenceText);
-
-
 
         // init bottom sheet behavior from mBottomSheet object
         final BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
@@ -39,17 +37,15 @@ public class FragmentBottomSheet extends Fragment {
         // change state of bottom sheet
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
-        // feel free to play around with these other states
-        //bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        //bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    mButton.setBackgroundResource(R.mipmap.downicon);
                 } else {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                    mButton.setBackgroundResource(R.mipmap.upicon);
                 }
 
             }
@@ -73,6 +69,11 @@ public class FragmentBottomSheet extends Fragment {
         bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                    mButton.setBackgroundResource(R.mipmap.downicon);
+                } else {
+                    mButton.setBackgroundResource(R.mipmap.upicon);
+                }
             }
 
             @Override

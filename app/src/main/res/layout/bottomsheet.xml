@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottomsheet"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
+    android:layout_height="600dp"
     android:orientation="vertical"
     app:behavior_hideable="false"
     app:behavior_peekHeight="110dp"
@@ -21,37 +21,121 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton3"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/driveButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@mipmap/driveicon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadTitle" />
+
+    <ImageButton
+        android:id="@+id/notesButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@mipmap/notesicon"
+        app:layout_constraintStart_toEndOf="@+id/driveButton"
+        app:layout_constraintTop_toBottomOf="@+id/uploadTitle" />
+
+    <TextView
+        android:id="@+id/uploadTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:text="UPLOAD NOTES"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cameraLabel" />
+
+    <TextView
+        android:id="@+id/driveLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Drive"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/driveButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/driveButton"
+        app:layout_constraintTop_toBottomOf="@+id/driveButton" />
+
+    <TextView
+        android:id="@+id/notesLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Notes"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/notesButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/notesButton"
+        app:layout_constraintTop_toBottomOf="@+id/notesButton" />
 
     <ImageButton
         android:id="@+id/imageButton3"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginEnd="35dp"
-        android:background="@mipmap/analyticsicon"
+        android:background="@mipmap/upicon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageButton
+        android:id="@+id/cameraButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@mipmap/cameraicon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/captureTitle" />
+
+    <ImageButton
+        android:id="@+id/galleryButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@mipmap/galleryicon"
+        app:layout_constraintStart_toEndOf="@+id/cameraButton"
+        app:layout_constraintTop_toBottomOf="@+id/captureTitle" />
+
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/captureTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="STATISTICS"
+        android:text="CAPTURE"
         android:textAlignment="textStart"
         android:textColor="@android:color/white"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/inferenceTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:text="INFERENCE"
         android:textAlignment="textStart"
@@ -59,53 +143,9 @@
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="20dp"
-        android:text="Latency: "
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="371dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="20dp"
-        android:text="Memory Usage:"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="20dp"
-        android:text="Battery Consumption:"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/driveLabel" />
 
     <Switch
         android:id="@+id/inferenceswitch"
@@ -115,10 +155,10 @@
         android:layout_marginTop="5dp"
         android:textAlignment="textStart"
         android:textAllCaps="false"
-        android:trackTint="@color/colorPrimary"
         android:thumbTint="@color/white"
+        android:trackTint="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/inferenceTitle" />
 
     <TextView
         android:id="@+id/inferenceText"
@@ -131,7 +171,35 @@
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/inferenceswitch"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/inferenceTitle" />
+
+    <TextView
+        android:id="@+id/cameraLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Camera"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/cameraButton"
+        app:layout_constraintStart_toStartOf="@+id/cameraButton"
+        app:layout_constraintTop_toBottomOf="@+id/cameraButton" />
+
+    <TextView
+        android:id="@+id/galleryLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Gallery"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/galleryButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/galleryButton"
+        app:layout_constraintTop_toBottomOf="@+id/cameraButton" />
 
 </android.support.constraint.ConstraintLayout>

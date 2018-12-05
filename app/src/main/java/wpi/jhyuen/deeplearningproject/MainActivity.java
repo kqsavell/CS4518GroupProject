@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean useOnDevice = true;
 
     private String curPhotoPath = "";
+    public BottomSheetBehavior bsBehavior = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
         /**Send results to UI */
         protected void onPostExecute(String result){
+            bsBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             EditText notes = (EditText)findViewById(R.id.editNotes);
             notes.setText(result);
         }
@@ -227,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
 
         /**Send results to UI */
         protected void onPostExecute(String result){
+            bsBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             EditText notes = (EditText)findViewById(R.id.editNotes);
             notes.setText(result);
         }

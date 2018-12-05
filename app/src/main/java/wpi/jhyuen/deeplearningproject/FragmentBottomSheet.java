@@ -18,12 +18,17 @@ import android.widget.TextView;
 
 public class FragmentBottomSheet extends Fragment {
 
+    // Fragment Variables
     int inferenceStatus = 0;
+    private MainActivity parent = null;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_bottomsheet, container, false);
+
+        // Get parent activity
+        parent = (MainActivity)getActivity();
 
         // get bottom sheet view
         final ConstraintLayout mBottomSheet = (ConstraintLayout) view.findViewById(R.id.bottomsheet);
@@ -56,9 +61,11 @@ public class FragmentBottomSheet extends Fragment {
             public void onClick(View v) {
                 if(inferenceStatus == 1) {
                     inferenceStatus = 0;
+                    parent.useOnDevice = false;
                     mInferenceText.setText("Off-Device");
                 } else if(inferenceStatus == 0){
                     inferenceStatus = 1;
+                    parent.useOnDevice = true;
                     mInferenceText.setText("On-Device");
                 }
 

@@ -14,12 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     // Class Variables
     private FirebaseVisionTextRecognizer onDeviceModel = null;
     private FirebaseVisionTextRecognizer offDeviceModel = null;
-    private boolean useOnDevice = true;
+    public boolean useOnDevice = true;
 
     private String curPhotoPath = "";
 
@@ -105,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**Event listener for when the "from camera" button is pressed.
      * Starts the camera app to get a picture from it*/
-    private View.OnClickListener fromCameraListener = new View.OnClickListener() {
+    public View.OnClickListener fromCameraListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             // Prepare the file URI
@@ -127,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**Event listener for when the "from photos" button is pressed.
      * Starts the photos app to get a picture from it*/
-    private View.OnClickListener fromPhotosListener = new View.OnClickListener() {
+    public View.OnClickListener fromPhotosListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             // Create the intent
@@ -159,21 +161,23 @@ public class MainActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
                     @Override
                     public void onSuccess(FirebaseVisionText firebaseVisionText) {
-                        Log.d("VISION", "Inference completed successfully");
+                        Log.d("VISION", "On Device inference completed successfully");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.d("VISION", "Inference failed");
+                        Log.d("VISION", "Off device inference failed");
                     }
                 });
 
             // Get the results
             String infText = "";
             try {
+                Tasks.await(result);
                 infText = result.getResult().getText();
-            } catch(NullPointerException npe) {
+                Log.d("VISION", "Inferred text: " + infText);
+            } catch(Exception npe) {
                 npe.printStackTrace();
             }
             return infText;
@@ -181,7 +185,8 @@ public class MainActivity extends AppCompatActivity {
 
         /**Send results to UI */
         protected void onPostExecute(String result){
-            //TODO: Send result text to TextView
+            EditText notes = (EditText)findViewById(R.id.editNotes);
+            notes.setText(result);
         }
     }
 
@@ -198,21 +203,23 @@ public class MainActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
                         @Override
                         public void onSuccess(FirebaseVisionText firebaseVisionText) {
-                            Log.d("VISION", "Inference completed successfully");
+                            Log.d("VISION", "Off device inference completed successfully");
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.d("VISION", "Inference failed");
+                            Log.d("VISION", "Off device inference failed");
                         }
                     });
 
             // Get the results
             String infText = "";
             try {
+                Tasks.await(result);
                 infText = result.getResult().getText();
-            } catch(NullPointerException npe) {
+                Log.d("VISION", "Inferred text: " + infText);
+            } catch(Exception npe) {
                 npe.printStackTrace();
             }
             return infText;
@@ -220,7 +227,8 @@ public class MainActivity extends AppCompatActivity {
 
         /**Send results to UI */
         protected void onPostExecute(String result){
-            //TODO: Send result text to TextView
+            EditText notes = (EditText)findViewById(R.id.editNotes);
+            notes.setText(result);
         }
     }
 

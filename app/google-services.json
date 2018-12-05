@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "326514552321",
+    "firebase_url": "https://groupprojectcs4518.firebaseio.com",
+    "project_id": "groupprojectcs4518",
+    "storage_bucket": "groupprojectcs4518.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326514552321:android:49e53dd57c9d65e9",
+        "android_client_info": {
+          "package_name": "wpi.jhyuen.deeplearningproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326514552321-p8vlcsht7pboe8504rlrcg00f1j5o2o3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgWkwQ51-jwR9l6aVSx-luslN9Pwl4DOo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

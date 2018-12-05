@@ -4,36 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     tools:context=".MainActivity">
 
     <fragment
         android:id="@+id/fragment_flowers"
-        android:name="wpi.jhyuen.deeplearningproject.flowers"
+        android:name="wpi.jhyuen.deeplearningproject.FragmentFlowers"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_searchbar" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_searchbar"
+        tools:layout="@layout/fragment_flowers" />
 
     <fragment
         android:id="@+id/fragment_bottomsheet"
-        android:name="wpi.jhyuen.deeplearningproject.bottomsheet"
+        android:name="wpi.jhyuen.deeplearningproject.FragmentBottomSheet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout="@layout/fragment_bottomsheet" />
 
     <fragment
         android:id="@+id/fragment_searchbar"
-        android:name="wpi.jhyuen.deeplearningproject.searchbar"
+        android:name="wpi.jhyuen.deeplearningproject.FragmentSearchbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_searchbar" />
 
 </android.support.constraint.ConstraintLayout>

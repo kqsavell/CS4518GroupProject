@@ -14,6 +14,7 @@ Antony Qin, Kyle Savell, Alex Tian, Joseph Yuen
 * The amount of energy consumed as the app is run.
 
 ## Methodology
+### Start up Time
 * Start up time was manually recorded over 20 tests by searching for "Displayed wpi.jhyuen.deeplearningproject/.MainActivity" after starting the app on a physical Samsung Galaxy S5.
 ### Inference Time
 * Inference time was calculated by using SystemClock.uptimeMillis() in onPreExecute() and onPostExecute() of the AsyncTask for both off device inference and on device inference. The latency was displayed in a TextView in the app, and then manually recorded for 20 tests on the same image on a physical Samsung Galaxy S5

@@ -30,31 +30,32 @@ Antony Qin, Kyle Savell, Alex Tian, Joseph Yuen
 
 |Start up Time (ms)|
 |:----------------:|
-||
-||
-||
-||
-||
-||
-||
-||
-||
-||
-||
-||
-||
-||
-||
-||
-||
-||
-||
-||
+|1263|
+|1081|
+|873|
+|1250|
+|976|
+|982|
+|978|
+|701|
+|956|
+|715|
+|680|
+|913|
+|717|
+|768|
+|1123|
+|731|
+|717|
+|688|
+|819|
+|733|
 
 |Start up Time Average (ms)|
 |:------------------------:|
+|883|
 
-* Summary: Our app started up, on average, in 1s 612ms. This is well under the 5 second cold start as in the lecture so our app does well in not doing too much in its onCreate() method.
+* Summary: Our app started up, on average, in 883ms. This is well under the 5 second cold start cap as described by Google, so our app does well in not doing too much in its onCreate() method.
 
 ### Inference Time
 

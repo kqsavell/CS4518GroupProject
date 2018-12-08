@@ -45,8 +45,6 @@ public class FragmentBottomSheet extends Fragment {
         photoBtn.setOnClickListener(parent.fromCameraListener);
         ImageButton galleryBtn = (ImageButton)view.findViewById(R.id.galleryButton);
         galleryBtn.setOnClickListener(parent.fromPhotosListener);
-        ImageButton emailBtn = (ImageButton)view.findViewById(R.id.driveButton);
-        emailBtn.setOnClickListener(parent.emailListener);
 
         // init bottom sheet behavior from mBottomSheet object
         final BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
@@ -83,7 +81,6 @@ public class FragmentBottomSheet extends Fragment {
             }
         });
 
-        // here are some overrides for reference if you choose to use BottomSheetBehavior in your next project
         bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {

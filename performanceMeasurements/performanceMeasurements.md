@@ -51,6 +51,8 @@ Antony Qin, Kyle Savell, Alex Tian, Joseph Yuen
 |819|
 |733|
 
+![startUpTime](images/startUpTime.png) 
+
 |Start up Time Average (ms)|
 |:------------------------:|
 |883|

@@ -2,6 +2,8 @@
 Antony Qin, Kyle Savell, Alex Tian, Joseph Yuen
 
 ## Performance Metrics Descriptions
+### Start up Time
+* The amount of time it takes for the app to be fully displayed.
 ### Inference Time
 * The amount of time it takes to do the inference computation.
 ### Memory Utilization
@@ -12,6 +14,8 @@ Antony Qin, Kyle Savell, Alex Tian, Joseph Yuen
 * The amount of energy consumed as the app is run.
 
 ## Methodology
+### Start up Time
+* Start up time was manually recorded over 20 tests by searching for "Displayed wpi.jhyuen.deeplearningproject/.MainActivity" after starting the app on a physical Samsung Galaxy S5.
 ### Inference Time
 * Inference time was calculated by using SystemClock.uptimeMillis() in onPreExecute() and onPostExecute() of the AsyncTask for both off device inference and on device inference. The latency was displayed in a TextView in the app, and then manually recorded for 20 tests on the same image on a physical Samsung Galaxy S5
 ### Memory Utilization
@@ -22,6 +26,36 @@ Antony Qin, Kyle Savell, Alex Tian, Joseph Yuen
 * Energy consumption was determined by viewing the Energy Profiler as the app was used in different stages on a physical One Plus 5.
 
 ## Quantitative Results
+### Start up Time
+
+|Start up Time (ms)|
+|:----------------:|
+||
+||
+||
+||
+||
+||
+||
+||
+||
+||
+||
+||
+||
+||
+||
+||
+||
+||
+||
+||
+
+|Start up Time Average (ms)|
+|:------------------------:|
+
+* Summary: Our app started up, on average, in 1s 612ms. This is well under the 5 second cold start as in the lecture so our app does well in not doing too much in its onCreate() method.
+
 ### Inference Time
 
 |Off Device Inference (ms)| On Device Inference (ms)|
@@ -46,7 +80,6 @@ Antony Qin, Kyle Savell, Alex Tian, Joseph Yuen
 |           481           |           438           |
 |           502           |           473           |
 |           440           |           495           |
-
 
 ![offDeviceLatency](images/offDeviceLatency.png) 
 ![onDeviceLatency](images/onDeviceLatency.png)

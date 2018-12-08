@@ -158,6 +158,32 @@ public class MainActivity extends AppCompatActivity {
     // Async Inference tasks
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /** AsyncTask to load the models for faster launch times*/
+    private class loadModels extends AsyncTask<Boolean, Float, FirebaseVisionTextRecognizer> {
+        boolean onDevice = true;
+
+        @Override
+        protected FirebaseVisionTextRecognizer doInBackground(Boolean... params) {
+            onDevice = params[0];
+            if (onDevice) {
+                return FirebaseVision.getInstance().getOnDeviceTextRecognizer();
+            }
+            else {
+                return FirebaseVision.getInstance().getCloudTextRecognizer();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(FirebaseVisionTextRecognizer model) {
+            if (onDevice) {
+                onDeviceModel = model;
+            }
+            else {
+                offDeviceModel = model;
+            }
+        }
+    }
+
     /** AsyncTask to run inference on-device */
     private class OnDeviceInf extends AsyncTask<Bitmap, Float, String> {
 

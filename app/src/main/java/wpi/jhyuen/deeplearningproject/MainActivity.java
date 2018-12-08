@@ -165,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
     public View.OnClickListener emailListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            Log.d("UPLOAD", "The email/drive listener was called");
             sendEmail();
         }
     };
@@ -341,7 +342,7 @@ public class MainActivity extends AppCompatActivity {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void sendEmail() {
-        Log.i("Send email", "");
+        Log.d("UPLOAD", "Attempting to upload message");
 
         Pattern emailPattern = Patterns.EMAIL_ADDRESS; // API level 8+
         Account[] accounts = AccountManager.get(MainActivity.this).getAccounts();

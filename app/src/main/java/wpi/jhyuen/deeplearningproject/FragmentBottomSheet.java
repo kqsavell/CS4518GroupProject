@@ -48,7 +48,6 @@ public class FragmentBottomSheet extends Fragment {
         ImageButton emailBtn = (ImageButton)view.findViewById(R.id.driveButton);
         emailBtn.setOnClickListener(parent.emailListener);
 
-
         // init bottom sheet behavior from mBottomSheet object
         final BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
         parent.bsBehavior = bottomSheetBehavior;

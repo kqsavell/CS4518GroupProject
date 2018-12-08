@@ -310,24 +310,6 @@ public class MainActivity extends AppCompatActivity {
         return photoUri;
     }
 
-    /** Writes String value to (assumed 1 column) CSV file*/
-    private void writeToCSV(String fileName, String value)
-    {
-        try
-        {
-            PrintWriter pw = new PrintWriter(new File(fileName + ".csv"));
-            StringBuilder sb = new StringBuilder();
-            sb.append(value);
-            sb.append('\n');
-            pw.write(sb.toString());
-            pw.close();
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-    }
-
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // Email
     ////////////////////////////////////////////////////////////////////////////////////////////////

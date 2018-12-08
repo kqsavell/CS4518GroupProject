@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
@@ -29,7 +30,9 @@ import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
     private String curPhotoPath = "";
     public BottomSheetBehavior bsBehavior = null;
 
+    // Widgets
+    private TextView mTextView_latency;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         offDeviceModel = FirebaseVision.getInstance().getCloudTextRecognizer();
 
         //TODO: Hook up event listeners for the camera/photo app button
+
+        // Hook up widget variables
+        mTextView_latency = findViewById(R.id.textView_latency);
     }
 
     @Override
@@ -152,9 +161,17 @@ public class MainActivity extends AppCompatActivity {
     /** AsyncTask to run inference on-device */
     private class OnDeviceInf extends AsyncTask<Bitmap, Float, String> {
 
+        float OnDefStart;
+        float OnDefEnd;
+
+        @Override
+        protected void onPreExecute()
+        {
+            OnDefStart = SystemClock.uptimeMillis(); // Start timer
+        }
+
         /**Run inference using on device Firebase model*/
         protected String doInBackground(Bitmap... imgFiles) {
-
             // Prepare image for inference
             FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(imgFiles[0]);
 
@@ -187,6 +204,11 @@ public class MainActivity extends AppCompatActivity {
 
         /**Send results to UI */
         protected void onPostExecute(String result){
+            // Calculate time taken to do inference
+            OnDefEnd = SystemClock.uptimeMillis();
+            String latency = "" + (OnDefEnd - OnDefStart);
+            mTextView_latency.setText("Inference Latency: " + latency + "ms");
+
             bsBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             EditText notes = (EditText)findViewById(R.id.editNotes);
             notes.setText(result);
@@ -196,8 +218,19 @@ public class MainActivity extends AppCompatActivity {
     /** AsyncTask to run inference off-device */
     private class OffDeviceInf extends AsyncTask<Bitmap, Float, String> {
 
+        float OffDefStart;
+        float OffDefEnd;
+
+        @Override
+        protected void onPreExecute()
+        {
+            OffDefStart = SystemClock.uptimeMillis(); // Start timer
+        }
+
         /**Run inference using cloud-based Firebase model*/
         protected String doInBackground(Bitmap... imgFiles) {
+            OffDefStart = SystemClock.uptimeMillis(); // Start timer
+
             // Prepare image for inference
             FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(imgFiles[0]);
 
@@ -230,6 +263,11 @@ public class MainActivity extends AppCompatActivity {
 
         /**Send results to UI */
         protected void onPostExecute(String result){
+            // Calculate time taken to do inference
+            OffDefEnd = SystemClock.uptimeMillis();
+            String latency = "" + (OffDefEnd - OffDefStart);
+            mTextView_latency.setText("Inference Latency: " + latency + "ms");
+
             bsBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             EditText notes = (EditText)findViewById(R.id.editNotes);
             notes.setText(result);
@@ -254,5 +292,23 @@ public class MainActivity extends AppCompatActivity {
             ioe.printStackTrace();
         }
         return photoUri;
+    }
+
+    /** Writes String value to (assumed 1 column) CSV file*/
+    private void writeToCSV(String fileName, String value)
+    {
+        try
+        {
+            PrintWriter pw = new PrintWriter(new File(fileName + ".csv"));
+            StringBuilder sb = new StringBuilder();
+            sb.append(value);
+            sb.append('\n');
+            pw.write(sb.toString());
+            pw.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

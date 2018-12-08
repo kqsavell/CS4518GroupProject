@@ -45,6 +45,8 @@ public class FragmentBottomSheet extends Fragment {
         photoBtn.setOnClickListener(parent.fromCameraListener);
         ImageButton galleryBtn = (ImageButton)view.findViewById(R.id.galleryButton);
         galleryBtn.setOnClickListener(parent.fromPhotosListener);
+        ImageButton emailBtn = (ImageButton)view.findViewById(R.id.driveButton);
+        emailBtn.setOnClickListener(parent.emailListener);
 
 
         // init bottom sheet behavior from mBottomSheet object

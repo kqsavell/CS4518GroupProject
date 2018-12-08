@@ -1,5 +1,7 @@
 package wpi.jhyuen.deeplearningproject;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
@@ -11,14 +13,17 @@ import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,6 +39,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -153,6 +159,16 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+
+    /**Event listener for when the "email" button is pressed.
+     * Sends an email to the user */
+    public View.OnClickListener emailListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            sendEmail();
+        }
+    };
+
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // Async Inference tasks
@@ -320,21 +336,42 @@ public class MainActivity extends AppCompatActivity {
         return photoUri;
     }
 
-    /** Writes String value to (assumed 1 column) CSV file*/
-    private void writeToCSV(String fileName, String value)
-    {
-        try
-        {
-            PrintWriter pw = new PrintWriter(new File(fileName + ".csv"));
-            StringBuilder sb = new StringBuilder();
-            sb.append(value);
-            sb.append('\n');
-            pw.write(sb.toString());
-            pw.close();
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // Email
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void sendEmail() {
+        Log.i("Send email", "");
+
+        Pattern emailPattern = Patterns.EMAIL_ADDRESS; // API level 8+
+        Account[] accounts = AccountManager.get(MainActivity.this).getAccounts();
+        String possibleEmail = "";
+
+        EditText titleText  = findViewById(R.id.editTitle);
+        EditText bodyText  = findViewById(R.id.editNotes);
+        String title = titleText.getText().toString();
+        String body = bodyText.getText().toString();
+
+        for (Account account : accounts) {
+            if (emailPattern.matcher(account.name).matches()) {
+                possibleEmail = account.name;
+            }
         }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
+
+        if (possibleEmail == "") {
+            System.out.print("No email found");
         }
+
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("message/rfc822");
+        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{possibleEmail});
+        i.putExtra(Intent.EXTRA_SUBJECT, title);
+        i.putExtra(Intent.EXTRA_TEXT   , body);
+        try {
+            startActivity(Intent.createChooser(i, "Send mail..."));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(MainActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+        }
+        
     }
 }

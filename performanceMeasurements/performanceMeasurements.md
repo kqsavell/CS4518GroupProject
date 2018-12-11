@@ -106,5 +106,6 @@ Antony Qin, Kyle Savell, Alex Tian, Joseph Yuen
 ### Battery Consumption
 ![offDeviceBattery](images/offDeviceBattery.png)
 ![onDeviceBattery](images/onDeviceBattery.png)
-* Summary
+
+* Summary: Surprisingly, off device inference had a higher max energy consumption over on device inference. Even though they had a similar memory and CPU usage, off device inference consumed more energy. This could be due to the model only needing a small computation, so networking was a greater drain of energy than running the model on the device.
 

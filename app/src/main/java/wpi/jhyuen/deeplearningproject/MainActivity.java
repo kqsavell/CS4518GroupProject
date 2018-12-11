@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     // Class Variables
     private FirebaseVisionTextRecognizer onDeviceModel = null;
     private FirebaseVisionTextRecognizer offDeviceModel = null;
-    public boolean useOnDevice = true;
+    public boolean useOnDevice = false;
 
     private String curPhotoPath = "";
     public BottomSheetBehavior bsBehavior = null;
@@ -64,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Prepare models
-        onDeviceModel = FirebaseVision.getInstance().getOnDeviceTextRecognizer();
-        offDeviceModel = FirebaseVision.getInstance().getCloudTextRecognizer();
+        AsyncTask loadOnDevice = new loadModels().execute(true); // Load on-device model
+        AsyncTask loadOffDevice = new loadModels().execute(false); // Load off-device model
+        //onDeviceModel = FirebaseVision.getInstance().getOnDeviceTextRecognizer();
+        //offDeviceModel = FirebaseVision.getInstance().getCloudTextRecognizer();
 
         //TODO: Hook up event listeners for the camera/photo app button
 
@@ -194,9 +196,11 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(FirebaseVisionTextRecognizer model) {
             if (onDevice) {
                 onDeviceModel = model;
+                Log.d("MODELS", "On-Device model loaded.");
             }
             else {
                 offDeviceModel = model;
+                Log.d("MODELS", "Off-Device model loaded.");
             }
         }
     }
